@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTANT VIRTUALS — AI Football Predictor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0B0D13',
+                        darkCard: '#131622',
+                        darkInput: '#171B26',
+                        brandRed: '#E23E3E',
+                        brandCoral: '#FF5B4F',
+                        borderGray: '#22283A'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B0D13;
+            color: #F3F4F6;
+        }
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D13;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #22283A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E23E3E;
+        }
+        /* Scanner glow effect */
+        @keyframes scan {
+            0% { top: 0%; opacity: 0.8; }
+            50% { top: 100%; opacity: 1; }
+            100% { top: 0%; opacity: 0.8; }
+        }
+        .scanner-line {
+            animation: scan 3s infinite linear;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-borderGray bg-darkBg/90 backdrop-blur-md sticky top-0 z-50 px-4 py-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-xl sm:text-2xl font-extrabold tracking-wider heading-font text-white">INSTANT <span class="text-brandRed">VIRTUALS</span></span>
+            </a>
+            <!-- Desktop Nav Items -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#how-it-works" class="hover:text-brandCoral transition duration-200">How It Works</a>
+                <a href="#ai-analyzer" class="hover:text-brandCoral transition duration-200">Try AI Predictor</a>
+                <a href="#features" class="hover:text-brandCoral transition duration-200">Why Choose Us</a>
+                <a href="#faq" class="hover:text-brandCoral transition duration-200 font-semibold text-brandRed">FAQs</a>
+            </nav>
+            <!-- CTA / Back button -->
+            <div class="flex items-center space-x-4">
+                <a href="#register" class="text-sm font-medium text-slate-300 hover:text-white transition duration-200">Back</a>
+                <a href="#register" class="bg-gradient-to-r from-brandRed to-brandCoral text-white text-xs sm:text-sm font-bold px-4 py-2 sm:px-6 sm:py-2.5 rounded-full shadow-lg shadow-brandRed/20 hover:shadow-brandRed/40 transition duration-300">Join Premium</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative pt-10 pb-16 px-4 sm:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Copy & Presentation -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center space-x-2 bg-brandRed/10 border border-brandRed/20 px-3 py-1.5 rounded-full text-xs font-semibold text-brandCoral">
+                        <span class="w-2 h-2 rounded-full bg-brandRed animate-pulse"></span>
+                        <span>Next-Gen Virtual Football AI Engine</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight heading-font">
+                        Turn Screenshots Into <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandRed to-brandCoral">Smart Predictions</span> In Seconds.
+                    </h1>
+                    
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Instant Virtuals is a premium AI-powered prediction platform built specifically for virtual football players. Simply capture your virtual fixtures, upload the screenshot, and let our intelligent engine analyze every match to generate high-confidence betting insights instantly.
+                    </p>
+
+                    <!-- Core highlights -->
+                    <div class="grid grid-cols-2 gap-4 max-w-lg pt-2">
+                        <div class="flex items-start space-x-3">
+                            <div class="p-1.5 rounded-lg bg-brandRed/10 text-brandRed mt-1">
+                                <i data-lucide="zap" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Instant Scan</h4>
+                                <p class="text-xs text-slate-400">Under 3 seconds analysis</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="p-1.5 rounded-lg bg-brandRed/10 text-brandRed mt-1">
+                                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">High Accuracy</h4>
+                                <p class="text-xs text-slate-400">92.4% success matrix</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Quick CTA -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 max-w-md">
+                        <a href="#ai-analyzer" class="flex-1 text-center bg-darkCard hover:bg-darkCard/80 border border-borderGray text-white font-bold py-3.5 px-6 rounded-xl transition duration-200 flex items-center justify-center space-x-2">
+                            <i data-lucide="play" class="w-4 h-4 text-brandRed"></i>
+                            <span>Demo Interactive Predictor</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Live Registration Screen (Replicated style from image) -->
+                <div id="register" class="lg:col-span-5">
+                    <div class="bg-darkCard rounded-2xl border border-borderGray p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                        <!-- Red glow behind form -->
+                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-brandRed/10 rounded-full blur-2xl pointer-events-none"></div>
+                        
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Create Your Account</div>
+                            <span class="text-xs text-brandCoral font-medium px-2 py-0.5 rounded bg-brandRed/10">STEP 1 OF 2</span>
+                        </div>
+
+                        <!-- Main Form replicating the screenshot styling exactly -->
+                        <form id="registerForm" class="space-y-6" onsubmit="handleRegister(event)">
+                            <!-- Password Input -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold tracking-wider text-slate-400 uppercase">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="password" required placeholder="••••••••" 
+                                        class="w-full bg-darkInput border border-borderGray rounded-xl py-3.5 px-4 text-white focus:outline-none focus:border-brandRed transition duration-200 tracking-wider">
+                                    <button type="button" onclick="togglePassword('password', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-brandRed hover:text-brandCoral transition">Show</button>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password Input -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold tracking-wider text-slate-400 uppercase">Confirm Password</label>
+                                <div class="relative">
+                                    <input type="password" id="confirmPassword" required placeholder="••••••••" 
+                                        class="w-full bg-darkInput border border-borderGray rounded-xl py-3.5 px-4 text-white focus:outline-none focus:border-brandRed transition duration-200 tracking-wider">
+                                    <button type="button" onclick="togglePassword('confirmPassword', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-semibold text-brandRed hover:text-brandCoral transition">Show</button>
+                                </div>
+                            </div>
+
+                            <!-- Referral Code (Optional) -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <label class="block text-xs font-bold tracking-wider text-slate-400 uppercase">Referral Code (Optional)</label>
+                                </div>
+                                <input type="text" id="referralCode" placeholder="e.g. VB-XXXX" 
+                                    class="w-full bg-darkInput border border-borderGray rounded-xl py-3.5 px-4 text-white placeholder-slate-600 focus:outline-none focus:border-brandRed transition duration-200">
+                            </div>
+
+                            <!-- Submit / Continue to Payment -->
+                            <button type="submit" class="w-full bg-gradient-to-r from-brandRed to-brandCoral text-white font-bold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-[1.01] active:scale-[0.99] uppercase tracking-wider text-sm shadow-lg shadow-brandRed/20 hover:shadow-brandRed/40">
+                                Continue to Payment
+                            </button>
+                        </form>
+
+                        <!-- OR Separator -->
+                        <div class="relative my-6 flex items-center justify-center">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-borderGray"></div>
+                            </div>
+                            <span class="relative px-3 bg-darkCard text-xs font-semibold tracking-wider text-slate-400 uppercase">OR</span>
+                        </div>
+
+                        <!-- Continue with Google Button -->
+                        <button onclick="simulateGoogleLogin()" class="w-full bg-transparent border border-borderGray hover:bg-white/5 text-white font-medium py-3.5 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-3 text-sm">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            <span>Continue with Google</span>
+                        </button>
+
+                        <!-- Existing user? Log in -->
+                        <div class="mt-6 text-center text-xs text-slate-400">
+                            Already have an account? <a href="javascript:void(0)" onclick="openLoginModal()" class="text-brandCoral font-semibold hover:underline">Log In</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Interactive AI Predictor Hub (Core Feature Simulation) -->
+        <section id="ai-analyzer" class="border-t border-borderGray bg-gradient-to-b from-darkBg to-[#0e101a] py-20 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <span class="text-xs font-bold tracking-widest text-brandRed uppercase">Live AI Dashboard Simulator</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold heading-font">Test Drive the AI Predictor</h2>
+                    <p class="text-slate-400">
+                        Select one of our actual virtual fixture screenshots below, or click Upload to test the analysis scan. See live outputs, odds, and predictions simulated in real-time.
+                    </p>
+                </div>
+
+                <!-- Main Analyzer Frame Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    
+                    <!-- Left: Upload/Selection Area (8 cols on lg) -->
+                    <div class="lg:col-span-7 bg-darkCard border border-borderGray rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-white text-lg flex items-center space-x-2">
+                                    <i data-lucide="image" class="text-brandRed w-5 h-5"></i>
+                                    <span>Fixture Screenshot Source</span>
+                                </h3>
+                                <span class="text-xs bg-brandRed/10 text-brandRed px-2.5 py-1 rounded-full font-semibold">Ready to Scan</span>
+                            </div>
+
+                            <!-- Sample selection grid using user provided assets -->
+                            <div class="mb-6">
+                                <p class="text-xs font-bold tracking-wider uppercase text-slate-400 mb-3">Select a sample fixture screen</p>
+                                <div class="grid grid-cols-5 gap-3">
+                                    <button onclick="selectSample(1)" id="sampleBtn1" class="relative group aspect-square rounded-lg overflow-hidden border-2 border-brandRed ring-2 ring-brandRed/25 transition">
+                                        <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736156527_szvu5okph.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNTY1Mjdfc3p2dTVva3BoLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.8mCsGRUsw-kh3nxITB4emigTGnnw9TvEA8e1NQ1TrYA" class="w-full h-full object-cover group-hover:scale-105 transition" alt="Sample 1">
+                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
+                                            <span class="text-[10px] font-bold text-white uppercase bg-black/60 px-1 py-0.5 rounded">Scrn 1</span>
+                                        </div>
+                                    </button>
+                                    <button onclick="selectSample(2)" id="sampleBtn2" class="relative group aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-slate-500 transition">
+                                        <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736161173_8q5cdkjjf.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNjExNzNfOHE1Y2RrampmLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.212B79E2K87CqUq8SR-LK80NNzSC1g5Nm8YeWdnRZAo" class="w-full h-full object-cover group-hover:scale-105 transition" alt="Sample 2">
+                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
+                                            <span class="text-[10px] font-bold text-white uppercase bg-black/60 px-1 py-0.5 rounded">Scrn 2</span>
+                                        </div>
+                                    </button>
+                                    <button onclick="selectSample(3)" id="sampleBtn3" class="relative group aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-slate-500 transition">
+                                        <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736166678_rt9qhupfl.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNjY2NzhfcnQ5cWh1cGZsLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.1ut-y9if0jTPJrxn4aWMzvn_7HQLCNCW5dUd3Y4B_9c" class="w-full h-full object-cover group-hover:scale-105 transition" alt="Sample 3">
+                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
+                                            <span class="text-[10px] font-bold text-white uppercase bg-black/60 px-1 py-0.5 rounded">Scrn 3</span>
+                                        </div>
+                                    </button>
+                                    <button onclick="selectSample(4)" id="sampleBtn4" class="relative group aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-slate-500 transition">
+                                        <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736176173_xfx8uh3mu.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNzYxNzNfeGZ4OHVoM211LnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.S894ay3z0SByw63xcER7vqajKGOV9yq_xZnF4oUS-HY" class="w-full h-full object-cover group-hover:scale-105 transition" alt="Sample 4">
+                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
+                                            <span class="text-[10px] font-bold text-white uppercase bg-black/60 px-1 py-0.5 rounded">Scrn 4</span>
+                                        </div>
+                                    </button>
+                                    <button onclick="selectSample(5)" id="sampleBtn5" class="relative group aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-slate-500 transition">
+                                        <img src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736191971_fk3bnsm2e.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxOTE5NzFfZmszYm5zbTJlLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.ZdNH_YzDyx-HLjWm1vfPoeFlPNxUCpsBaIDocfCqxbg" class="w-full h-full object-cover group-hover:scale-105 transition" alt="Sample 5">
+                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition flex items-center justify-center">
+                                            <span class="text-[10px] font-bold text-white uppercase bg-black/60 px-1 py-0.5 rounded">Scrn 5</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Screen Canvas / Viewport with Scanner Line -->
+                            <div class="relative bg-black rounded-xl overflow-hidden border border-borderGray flex items-center justify-center h-80">
+                                <img id="activeSampleImg" src="https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736156527_szvu5okph.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNTY1Mjdfc3p2dTVva3BoLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.8mCsGRUsw-kh3nxITB4emigTGnnw9TvEA8e1NQ1TrYA" class="h-full w-auto object-contain transition-opacity duration-300" alt="Active Screen Grid">
+                                
+                                <!-- Scanner line (Hidden by default, active during trigger) -->
+                                <div id="scanLine" class="hidden absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brandRed to-transparent shadow-[0_0_15px_#E23E3E] scanner-line"></div>
+                                
+                                <!-- Floating scan status indicator -->
+                                <div id="scanStatusOverlay" class="hidden absolute inset-0 bg-black/70 flex flex-col items-center justify-center space-y-4">
+                                    <div class="relative flex items-center justify-center">
+                                        <div class="animate-spin rounded-full h-12 w-12 border-4 border-slate-700 border-t-brandRed"></div>
+                                        <i data-lucide="cpu" class="absolute w-5 h-5 text-brandRed animate-pulse"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="font-bold text-white text-sm tracking-wider uppercase" id="scanningText">Reading fixtures OCR...</p>
+                                        <p class="text-[10px] text-slate-400 mt-1" id="scanningStep">Step 1: Identifying Leagues & Teams</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scan action buttons -->
+                        <div class="grid grid-cols-2 gap-4 mt-6">
+                            <label class="cursor-pointer bg-darkInput hover:bg-slate-800 border border-borderGray text-slate-300 font-semibold py-3 px-4 rounded-xl transition duration-200 flex items-center justify-center space-x-2 text-sm">
+                                <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                                <span>Upload Custom</span>
+                                <input type="file" class="hidden" accept="image/*" onchange="handleCustomUpload(event)">
+                            </label>
+                            <button onclick="startAiAnalysis()" class="bg-gradient-to-r from-brandRed to-brandCoral text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-brandRed/20 hover:shadow-brandRed/40 transition duration-300 flex items-center justify-center space-x-2 text-sm">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                <span>Run AI Predictions</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Prediction Results View (5 cols on lg) -->
+                    <div class="lg:col-span-5 bg-darkCard border border-borderGray rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-white text-lg flex items-center space-x-2">
+                                    <i data-lucide="bar-chart-2" class="text-brandCoral w-5 h-5"></i>
+                                    <span>AI Analysis Results</span>
+                                </h3>
+                                <div class="flex items-center space-x-1.5 bg-[#1CD16B]/10 border border-[#1CD16B]/20 text-[#1CD16B] px-2 py-0.5 rounded text-[10px] font-bold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#1CD16B]"></span>
+                                    <span>UPDATED LIVE</span>
+                                </div>
+                            </div>
+
+                            <!-- Initial blank state state / simulated loader -->
+                            <div id="predictionsEmptyState" class="hidden h-full flex flex-col items-center justify-center text-center py-20">
+                                <div class="p-4 bg-darkInput rounded-full text-slate-600 mb-4 border border-borderGray">
+                                    <i data-lucide="info" class="w-8 h-8"></i>
+                                </div>
+                                <p class="text-sm text-slate-400 max-w-xs">Select a screenshot of your virtual football match lobby and click "Run AI Predictions" to reveal analytics.</p>
+                            </div>
+
+                            <!-- Live predictions visual data -->
+                            <div id="predictionsResultsState" class="space-y-4">
+                                <div class="bg-darkInput rounded-xl p-4 border border-borderGray">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="text-[10px] font-extrabold text-brandRed tracking-widest uppercase">Premier League Virtual</span>
+                                        <span class="text-xs font-semibold text-slate-400">Matchday 12</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="text-left">
+                                            <p class="font-bold text-white text-sm" id="predHomeTeam">Chelsea (V)</p>
+                                            <p class="text-[10px] text-slate-400">Form: W-W-L-D</p>
+                                        </div>
+                                        <span class="text-xs font-bold text-slate-500">VS</span>
+                                        <div class="text-right">
+                                            <p class="font-bold text-white text-sm" id="predAwayTeam">Manchester United (V)</p>
+                                            <p class="text-[10px] text-slate-400">Form: L-D-W-W</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Recommended bet card -->
+                                <div class="bg-darkInput rounded-xl p-4 border border-borderGray space-y-3">
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">AI Best Recommendation</span>
+                                    <div class="flex justify-between items-center bg-brandRed/5 border border-brandRed/10 p-3 rounded-lg">
+                                        <div>
+                                            <p class="text-xs text-brandCoral font-semibold">Recommended Pick</p>
+                                            <p class="font-extrabold text-white text-lg" id="predBestPick">Over 2.5 Goals</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-slate-400">Implied Odds</p>
+                                            <p class="font-bold text-[#1CD16B] text-lg" id="predOdds">1.82</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Score Prediction Details -->
+                                    <div class="grid grid-cols-2 gap-3 pt-1">
+                                        <div class="bg-darkCard p-2.5 rounded-lg border border-borderGray">
+                                            <p class="text-[10px] text-slate-400">Correct Score (AI)</p>
+                                            <p class="font-bold text-white text-sm" id="predScore">2 - 1</p>
+                                        </div>
+                                        <div class="bg-darkCard p-2.5 rounded-lg border border-borderGray">
+                                            <p class="text-[10px] text-slate-400">Alternative Option</p>
+                                            <p class="font-bold text-white text-sm" id="predAlternative">Chelsea Win (Home)</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Confidence Matrix -->
+                                <div class="bg-darkInput rounded-xl p-4 border border-borderGray space-y-2">
+                                    <div class="flex justify-between text-xs font-semibold">
+                                        <span class="text-slate-400">Prediction Accuracy Confidence</span>
+                                        <span class="text-brandCoral font-bold" id="confidenceValue">89%</span>
+                                    </div>
+                                    <div class="w-full bg-darkCard rounded-full h-2.5 overflow-hidden border border-borderGray">
+                                        <div id="confidenceBar" class="bg-gradient-to-r from-brandRed to-brandCoral h-full rounded-full transition-all duration-1000" style="width: 89%"></div>
+                                    </div>
+                                    <div class="flex justify-between text-[10px] text-slate-500 pt-1">
+                                        <span>Risk Profile: Low</span>
+                                        <span>Database Samples Analyzed: 14,250+</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA inside Results Panel -->
+                        <div class="mt-6">
+                            <a href="#register" class="block text-center w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3.5 px-4 rounded-xl transition duration-200 text-sm border border-slate-700 flex items-center justify-center space-x-2">
+                                <i data-lucide="unlock" class="w-4 h-4 text-brandCoral"></i>
+                                <span>Get 100% Full Predicted List</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Process / How it works Section -->
+        <section id="how-it-works" class="py-20 px-4 sm:px-8 max-w-7xl mx-auto border-t border-borderGray">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Image or visual flow representation -->
+                <div class="lg:col-span-5 order-last lg:order-first relative">
+                    <!-- Tech aesthetic card container -->
+                    <div class="bg-darkCard rounded-2xl border border-borderGray p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-borderGray pb-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <span class="text-xs text-slate-500 font-bold tracking-wider">AI PREDICTOR ENGINE v3.4</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex items-start space-x-3 bg-darkInput/50 p-3 rounded-xl border border-borderGray">
+                                <span class="bg-brandRed text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+                                <div>
+                                    <strong class="text-white block">Open Football Lobby</strong>
+                                    Navigate to your primary virtual bookmaker matches lobby.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-darkInput/50 p-3 rounded-xl border border-borderGray">
+                                <span class="bg-brandRed text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+                                <div>
+                                    <strong class="text-white block">Take Screenshot</strong>
+                                    Capture the list of upcoming fixtures showing names and current base odds.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-darkInput/50 p-3 rounded-xl border border-borderGray">
+                                <span class="bg-brandRed text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+                                <div>
+                                    <strong class="text-white block">Instant AI Upload</strong>
+                                    Import screenshot into Instant Virtuals prediction panel.
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3 bg-darkInput/50 p-3 rounded-xl border border-borderGray">
+                                <span class="bg-brandRed text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">4</span>
+                                <div>
+                                    <strong class="text-white block">Receive Predicted Picks</strong>
+                                    Access precise high-confidence picks automatically calculated.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Text Copy of Process -->
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-xs font-bold tracking-widest text-brandRed uppercase">Streamlined Protocol</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold heading-font">How Instant Virtuals Works</h2>
+                    <p class="text-slate-400">
+                        Our algorithm runs thousands of simulations per second, matching active team lists extracted via screenshot OCR against historic virtual league matrices. It finds statistical anomalies, calculates high-confidence probabilities, and returns best choices immediately.
+                    </p>
+                    <div class="border-l-2 border-brandRed pl-4 space-y-2 text-slate-300">
+                        <p class="italic text-base">"Play smarter. Predict faster. Win with confidence."</p>
+                    </div>
+                    <div class="pt-4">
+                        <a href="#register" class="bg-gradient-to-r from-brandRed to-brandCoral text-white font-bold py-3.5 px-8 rounded-xl transition duration-300 shadow-lg shadow-brandRed/10 inline-flex items-center space-x-2">
+                            <span>Get Started Now</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Section -->
+        <section id="features" class="bg-darkCard/50 border-t border-b border-borderGray py-20 px-4 sm:px-8">
+            <div class="max-w-7xl mx-auto space-y-12">
+                <div class="text-center space-y-4 max-w-3xl mx-auto">
+                    <span class="text-xs font-bold tracking-widest text-brandRed uppercase">Elite Match Matrix</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold heading-font">Why Choose Instant Virtuals?</h2>
+                    <p class="text-slate-400">Designed from the ground up for serious, fast-paced virtual sports gaming.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">AI-Powered Virtual Analysis</h4>
+                        <p class="text-sm text-slate-400">Highly customized models trained solely on historical virtual football league outcomes and trends.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="camera" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">Instant Screenshot Recognition</h4>
+                        <p class="text-sm text-slate-400">Seamless OCR text-detection. Zero manual odds or team entry required. Point, shoot, upload.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="trending-up" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">Fast & Accurate Predictions</h4>
+                        <p class="text-sm text-slate-400">Get output matches and exact betting paths in seconds, beating the fast timer counts on virtual cycles.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">Simple 4-Step Process</h4>
+                        <p class="text-sm text-slate-400">No complex configuration. Highly intuitive dashboards constructed with simplicity in mind.</p>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="wallet" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">Affordable One-Time Registration</h4>
+                        <p class="text-sm text-slate-400">No recurring monthly bills. Pay a flat entrance registration, unlocking standard baseline AI updates.</p>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="bg-darkCard p-6 rounded-2xl border border-borderGray space-y-3 hover:border-brandRed/30 transition duration-300">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed/10 text-brandRed flex items-center justify-center">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                        </div>
+                        <h4 class="font-bold text-white text-lg">Trusted By Thousands</h4>
+                        <p class="text-sm text-slate-400">Join a vast network of users exploiting predictive logic to maximize their virtual sports experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faq" class="py-20 px-4 sm:px-8 max-w-4xl mx-auto">
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-xs font-bold tracking-widest text-brandRed uppercase">Information Hub</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold heading-font">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="border border-borderGray rounded-xl bg-darkCard overflow-hidden transition">
+                    <button onclick="toggleFaq(1)" class="w-full text-left p-5 font-semibold text-white flex justify-between items-center hover:bg-slate-800/30 transition">
+                        <span>How accurate are the virtual football predictions?</span>
+                        <i id="faqIcon1" data-lucide="plus" class="w-5 h-5 text-brandRed transition-transform duration-200"></i>
+                    </button>
+                    <div id="faqAnswer1" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-borderGray/50 pt-3">
+                        Our model works by combining historic algorithmic results with localized current team cycles. While no prediction can be 100% accurate, the engine maintains an incredibly high win-rate ratio of above 90% in standard parameters.
+                    </div>
+                </div>
+
+                <div class="border border-borderGray rounded-xl bg-darkCard overflow-hidden transition">
+                    <button onclick="toggleFaq(2)" class="w-full text-left p-5 font-semibold text-white flex justify-between items-center hover:bg-slate-800/30 transition">
+                        <span>Which virtual sports platforms do you support?</span>
+                        <i id="faqIcon2" data-lucide="plus" class="w-5 h-5 text-brandRed transition-transform duration-200"></i>
+                    </button>
+                    <div id="faqAnswer2" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-borderGray/50 pt-3">
+                        We support most major interactive virtual sports bookmakers globally, including standard fixture screens, matches rosters, and odds tables. As long as your screenshot has readable text, we support it!
+                    </div>
+                </div>
+
+                <div class="border border-borderGray rounded-xl bg-darkCard overflow-hidden transition">
+                    <button onclick="toggleFaq(3)" class="w-full text-left p-5 font-semibold text-white flex justify-between items-center hover:bg-slate-800/30 transition">
+                        <span>Are there monthly subscription charges?</span>
+                        <i id="faqIcon3" data-lucide="plus" class="w-5 h-5 text-brandRed transition-transform duration-200"></i>
+                    </button>
+                    <div id="faqAnswer3" class="hidden px-5 pb-5 text-sm text-slate-400 leading-relaxed border-t border-borderGray/50 pt-3">
+                        No! We believe in keeping access accessible. There is a simple one-time account setup fee with zero monthly surprise charges.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-borderGray bg-darkBg py-12 px-4 sm:px-8 text-center space-y-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-xl font-extrabold tracking-wider heading-font text-white">INSTANT <span class="text-brandRed">VIRTUALS</span></span>
+            </a>
+            <p class="text-xs text-slate-500">© 2024 Instant Virtuals AI Inc. All rights reserved. Play responsibly.</p>
+            <div class="flex space-x-6 text-xs text-slate-400">
+                <a href="javascript:void(0)" class="hover:text-white transition">Terms of Service</a>
+                <a href="javascript:void(0)" class="hover:text-white transition">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Help Widget / floating chat (Mimicking red help bubble on bottom right of image) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Floating Red circular badge -->
+        <button onclick="toggleHelpWidget()" class="bg-[#E23E3E] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(226,62,62,0.4)] hover:bg-[#FF5B4F] active:scale-95 transition-all duration-200 relative group">
+            <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-brandCoral rounded-full border-2 border-darkBg animate-pulse"></span>
+            <i data-lucide="help-circle" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Help Widget Dialog Panel (Hidden initially) -->
+        <div id="helpWidgetPanel" class="hidden absolute bottom-20 right-0 w-80 bg-darkCard border border-borderGray rounded-2xl shadow-2xl p-5 space-y-4">
+            <div class="flex justify-between items-center border-b border-borderGray pb-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></div>
+                    <span class="font-bold text-sm text-white">Instant Virtuals Support</span>
+                </div>
+                <button onclick="toggleHelpWidget()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
+            </div>
+            <div class="space-y-3">
+                <p class="text-xs text-slate-300">Hello! Ask us anything or type "predict" to learn how the screenshot OCR mechanism processes bets.</p>
+                <!-- Quick choices -->
+                <button onclick="sendHelpQuery('How do I upload?')" class="w-full text-left bg-darkInput border border-borderGray hover:bg-slate-800 text-xs text-slate-300 py-2.5 px-3 rounded-lg transition">How do I upload fixtures?</button>
+                <button onclick="sendHelpQuery('What are current accuracy ratings?')" class="w-full text-left bg-darkInput border border-borderGray hover:bg-slate-800 text-xs text-slate-300 py-2.5 px-3 rounded-lg transition">What is the accuracy rate?</button>
+            </div>
+            <!-- Interactive input inside bubble widget -->
+            <div class="relative">
+                <input type="text" id="widgetInput" placeholder="Message support..." class="w-full bg-darkInput border border-borderGray rounded-xl py-2 px-3 text-xs focus:outline-none focus:border-brandRed text-white">
+                <button onclick="submitHelpQuery()" class="absolute right-2 top-1/2 -translate-y-1/2 text-brandRed hover:text-brandCoral"><i data-lucide="send" class="w-4 h-4"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal (For demonstration purpose if clicking "Log In") -->
+    <div id="loginModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-darkCard border border-borderGray w-full max-w-md rounded-2xl p-6 sm:p-8 space-y-6 relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            
+            <div class="text-center space-y-1">
+                <h3 class="font-extrabold text-2xl heading-font text-white">Welcome Back</h3>
+                <p class="text-slate-400 text-sm">Enter details to access predictions</p>
+            </div>
+
+            <form class="space-y-4" onsubmit="handleLoginSubmit(event)">
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Email Address</label>
+                    <input type="email" required placeholder="name@domain.com" class="w-full bg-darkInput border border-borderGray rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brandRed transition">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Password</label>
+                    <input type="password" required placeholder="••••••••" class="w-full bg-darkInput border border-borderGray rounded-xl py-3 px-4 text-white focus:outline-none focus:border-brandRed transition">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-brandRed to-brandCoral text-white font-bold py-3 px-4 rounded-xl shadow-lg transition">Log In to Portal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Simulation Modal -->
+    <div id="paymentModal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-darkCard border border-borderGray w-full max-w-lg rounded-2xl p-6 sm:p-8 space-y-6 relative text-center">
+            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            
+            <div class="w-16 h-16 bg-brandRed/10 text-brandRed rounded-full flex items-center justify-center mx-auto">
+                <i data-lucide="shield-alert" class="w-8 h-8"></i>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="font-extrabold text-2xl heading-font text-white">Final Step: Premium Setup Fee</h3>
+                <p class="text-slate-400 text-sm">To ensure fast database query performance, standard activation requires a single, refundable checkout verification payment.</p>
+            </div>
+
+            <div class="bg-darkInput border border-borderGray rounded-xl p-4 flex justify-between items-center text-left">
+                <div>
+                    <h4 class="font-bold text-white text-sm">One-Time Activation Fee</h4>
+                    <p class="text-xs text-slate-500">Includes lifetime predictor scans</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-slate-400 line-through">$49.00</p>
+                    <p class="text-brandCoral font-extrabold text-xl">$14.99</p>
+                </div>
+            </div>
+
+            <button onclick="alert('Demo: Redirecting to Stripe Integration module...')" class="w-full bg-gradient-to-r from-[#1CD16B] to-[#059669] text-white font-extrabold py-4 px-6 rounded-xl transition duration-300 transform hover:scale-[1.01] uppercase tracking-wider text-sm flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Complete Checkout Securely</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Live Predictions Sample Database Array for UI simulation -->
+    <script>
+        const samplePredictions = [
+            {
+                img: "https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736156527_szvu5okph.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNTY1Mjdfc3p2dTVva3BoLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.8mCsGRUsw-kh3nxITB4emigTGnnw9TvEA8e1NQ1TrYA",
+                home: "Chelsea (V)",
+                away: "Liverpool (V)",
+                best: "Over 2.5 Goals",
+                odds: "1.82",
+                score: "2 - 1",
+                alternative: "Liverpool win (Draw No Bet)",
+                confidence: "89"
+            },
+            {
+                img: "https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736161173_8q5cdkjjf.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNjExNzNfOHE1Y2RrampmLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.212B79E2K87CqUq8SR-LK80NNzSC1g5Nm8YeWdnRZAo",
+                home: "Real Madrid (V)",
+                away: "Barcelona (V)",
+                best: "Both Teams To Score (GG)",
+                odds: "1.65",
+                score: "2 - 2",
+                alternative: "Real Madrid Over 1.5 Goals",
+                confidence: "94"
+            },
+            {
+                img: "https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736166678_rt9qhupfl.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNjY2NzhfcnQ5cWh1cGZsLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.1ut-y9if0jTPJrxn4aWMzvn_7HQLCNCW5dUd3Y4B_9c",
+                home: "Bayern Munich (V)",
+                away: "Dortmund (V)",
+                best: "Home Win (Bayern)",
+                odds: "1.52",
+                score: "3 - 1",
+                alternative: "Over 3.5 Goals",
+                confidence: "91"
+            },
+            {
+                img: "https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736176173_xfx8uh3mu.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxNzYxNzNfeGZ4OHVoM211LnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.S894ay3z0SByw63xcER7vqajKGOV9yq_xZnF4oUS-HY",
+                home: "Arsenal (V)",
+                away: "Man City (V)",
+                best: "Away Win (Man City)",
+                odds: "2.10",
+                score: "1 - 2",
+                alternative: "Both Teams To Score (GG)",
+                confidence: "87"
+            },
+            {
+                img: "https://dvxrhkgloakisnvqoxgl.supabase.co/storage/v1/object/sign/images/inputs/1788736191971_fk3bnsm2e.png?token=eyJraWQiOiI0NWE1YWU1ZS0xNzg4LTRiMWYtYWM5OC1hMjgwNmQ2OTM4ZWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZXMvaW5wdXRzLzE3ODg3MzYxOTE5NzFfZmszYm5zbTJlLnBuZyIsInNjb3BlIjoiZG93bmxvYWQiLCJpYXQiOjE3ODg3MzYyMTQsImV4cCI6MTgyMDI3MjIxNH0.ZdNH_YzDyx-HLjWm1vfPoeFlPNxUCpsBaIDocfCqxbg",
+                home: "Juventus (V)",
+                away: "AC Milan (V)",
+                best: "Under 2.5 Goals",
+                odds: "1.78",
+                score: "1 - 0",
+                alternative: "Juventus Clean Sheet",
+                confidence: "92"
+            }
+        ];
+
+        let selectedPredictionIndex = 0;
+
+        // Select a sample fixture and set image source
+        function selectSample(index) {
+            selectedPredictionIndex = index - 1;
+            const data = samplePredictions[selectedPredictionIndex];
+            
+            // Highlight current selection
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`sampleBtn${i}`);
+                if (i === index) {
+                    btn.classList.add('border-brandRed', 'ring-2', 'ring-brandRed/25');
+                    btn.classList.remove('border-transparent', 'hover:border-slate-500');
+                } else {
+                    btn.classList.remove('border-brandRed', 'ring-2', 'ring-brandRed/25');
+                    btn.classList.add('border-transparent', 'hover:border-slate-500');
+                }
+            }
+
+            // Change active image source
+            const activeImg = document.getElementById('activeSampleImg');
+            activeImg.style.opacity = '0';
+            setTimeout(() => {
+                activeImg.src = data.img;
+                activeImg.style.opacity = '1';
+            }, 200);
+        }
+
+        // Custom image upload simulator
+        function handleCustomUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const activeImg = document.getElementById('activeSampleImg');
+                    activeImg.src = e.target.result;
+                    
+                    // Generate randomized custom predictions
+                    const homes = ["Liverpool", "Newcastle", "Tottenham", "Inter Milan", "Atletico Madrid"];
+                    const aways = ["PSG", "Benfica", "Ajax", "Napoli", "Porto"];
+                    const randomHome = homes[Math.floor(Math.random() * homes.length)];
+                    const randomAway = aways[Math.floor(Math.random() * aways.length)];
+                    const picks = ["Over 1.5 Goals", "Both Teams Score", "Under 3.5 Goals", "Home Draw No Bet"];
+                    const randomPick = picks[Math.floor(Math.random() * picks.length)];
+                    const conf = Math.floor(Math.random() * 15) + 80; // 80 - 95
+
+                    // Override database simulation with these custom values
+                    samplePredictions.push({
+                        img: e.target.result,
+                        home: `${randomHome} (V)`,
+                        away: `${randomAway} (V)`,
+                        best: randomPick,
+                        odds: (1.50 + Math.random() * 0.9).toFixed(2),
+                        score: `${Math.floor(Math.random()*3)} - ${Math.floor(Math.random()*3)}`,
+                        alternative: "Double Chance (Home/Away)",
+                        confidence: conf.toString()
+                    });
+                    
+                    selectedPredictionIndex = samplePredictions.length - 1;
+                    startAiAnalysis();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Start simulated scan
+        function startAiAnalysis() {
+            const scanOverlay = document.getElementById('scanStatusOverlay');
+            const scanLine = document.getElementById('scanLine');
+            const resultsState = document.getElementById('predictionsResultsState');
+            const emptyState = document.getElementById('predictionsEmptyState');
+
+            const scanningText = document.getElementById('scanningText');
+            const scanningStep = document.getElementById('scanningStep');
+
+            // Show scanners
+            scanOverlay.classList.remove('hidden');
+            scanLine.classList.remove('hidden');
+
+            // Phase 1 loader
+            scanningText.innerText = "Initiating OCR Scan...";
+            scanningStep.innerText = "Step 1: Identifying Leagues & Teams";
+
+            setTimeout(() => {
+                // Phase 2 loader
+                scanningText.innerText = "Analyzing Database Trends...";
+                scanningStep.innerText = "Step 2: Matching past 14,000 matches";
+            }, 1000);
+
+            setTimeout(() => {
+                // Phase 3 loader
+                scanningText.innerText = "Finalizing Confidence Index...";
+                scanningStep.innerText = "Step 3: Outputting predictive matrix";
+            }, 2000);
+
+            setTimeout(() => {
+                // Close loaders
+                scanOverlay.classList.add('hidden');
+                scanLine.classList.add('hidden');
+
+                // Populate prediction visual panel
+                const data = samplePredictions[selectedPredictionIndex];
+                document.getElementById('predHomeTeam').innerText = data.home;
+                document.getElementById('predAwayTeam').innerText = data.away;
+                document.getElementById('predBestPick').innerText = data.best;
+                document.getElementById('predOdds').innerText = data.odds;
+                document.getElementById('predScore').innerText = data.score;
+                document.getElementById('predAlternative').innerText = data.alternative;
+                document.getElementById('confidenceValue').innerText = `${data.confidence}%`;
+                document.getElementById('confidenceBar').style.width = `${data.confidence}%`;
+
+                // Show populated results state
+                resultsState.classList.remove('hidden');
+                if (emptyState) emptyState.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Toggle Password show/hide helper
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+                btn.innerText = "Hide";
+            } else {
+                input.type = "password";
+                btn.innerText = "Show";
+            }
+        }
+
+        // Help bubble widget trigger
+        function toggleHelpWidget() {
+            const panel = document.getElementById('helpWidgetPanel');
+            panel.classList.toggle('hidden');
+        }
+
+        function sendHelpQuery(text) {
+            document.getElementById('widgetInput').value = text;
+            submitHelpQuery();
+        }
+
+        function submitHelpQuery() {
+            const input = document.getElementById('widgetInput');
+            if (input.value.trim() !== "") {
+                const text = input.value;
+                input.value = "";
+                alert(`Query Submitted: "${text}"\nOur live AI operator will respond shortly!`);
+            }
+        }
+
+        // FAQ accordion
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faqAnswer${index}`);
+            const icon = document.getElementById(`faqIcon${index}`);
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-45');
+        }
+
+        // Forms logic
+        function handleRegister(e) {
+            e.preventDefault();
+            const pass = document.getElementById('password').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+
+            if (pass !== confirmPass) {
+                alert("Passwords do not match. Please verify.");
+                return;
+            }
+
+            // Open payment modal simulation
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function simulateGoogleLogin() {
+            alert("Redirecting to Google OAuth Authorization sequence...");
+        }
+
+        // Login Modal Controls
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(e) {
+            e.preventDefault();
+            alert("Successful simulation login! Navigating to full premium prediction table.");
+            closeLoginModal();
+        }
+
+        // Payment modal close
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+        }
+    </script>
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
